@@ -1,4 +1,4 @@
-import { shoe8 } from "../assets/images";
+import { book8 } from "../assets/images";
 import { Button } from "../components";
 
 const SuperQuality = () => {
@@ -26,7 +26,7 @@ const SuperQuality = () => {
 
       <div className='flex-1 flex justify-center items-center'>
         <img
-          src={shoe8}
+          src={book8}
           alt='product detail'
           width={570}
           height={522}

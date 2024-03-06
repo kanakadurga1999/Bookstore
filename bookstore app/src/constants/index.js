@@ -1,5 +1,5 @@
 import { facebook, instagram, shieldTick, support, truckFast, twitter } from "../assets/icons";
-import { bigShoe1, bigShoe2, bigShoe3, customer1, customer2, shoe4, shoe5, shoe6, shoe7, thumbnailShoe1, thumbnailShoe2, thumbnailShoe3 } from "../assets/images";
+import { bigBook1, bigBook2, bigBook3, customer1, customer2, book4, book5, book6, book7, thumbnailBook1, thumbnailBook2, thumbnailBook3 } from "../assets/images";
 
 export const navLinks = [
     // { href: "#home", label: "Home" },
@@ -12,18 +12,18 @@ export const navLinks = [
     { link: "Rent your book", path: "Rentbook" },
 ];
 
-export const shoes = [
+export const books = [
     {
-        thumbnail: thumbnailShoe1,
-        bigShoe: bigShoe1,
+        thumbnail: thumbnailBook1,
+        bigBook: bigBook1,
     },
     {
-        thumbnail: thumbnailShoe2,
-        bigShoe: bigShoe2,
+        thumbnail: thumbnailBook2,
+        bigBook: bigBook2,
     },
     {
-        thumbnail: thumbnailShoe3,
-        bigShoe: bigShoe3,
+        thumbnail: thumbnailBook3,
+        bigBook: bigBook3,
     },
 ];
 
@@ -35,22 +35,22 @@ export const statistics = [
 
 export const products = [
     {
-        imgURL: shoe4,
+        imgURL: book4,
         name: "Do It Today",
         price: "$2.20",
     },
     {
-        imgURL: shoe5,
+        imgURL: book5,
         name: "Getting Started",
         price: "$2.20",
     },
     {
-        imgURL: shoe6,
+        imgURL: book6,
         name: "The Mountain is You",
         price: "$2.20",
     },
     {
-        imgURL: shoe7,
+        imgURL: book7,
         name: "Read People Like A Book",
         price: "$2.20",
     },
@@ -115,7 +115,7 @@ export const footerLinks = [
     {
         title: "Get in touch",
         links: [
-            { name: "customer@bookart.com", link: "mailto:customer@nike.com" },
+            { name: "customer@bookart.com", link: "mailto:customer@bookart.com" },
             { name: "+92554862354", link: "tel:+92554862354" },
         ],
     },

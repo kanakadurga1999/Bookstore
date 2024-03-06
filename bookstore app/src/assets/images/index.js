@@ -1,6 +1,6 @@
-import bigShoe1 from './sunart.jpg'
-import bigShoe2 from './marcus.jpg'
-import bigShoe3 from './oscar.jpg'
+import bigBook1 from './sunartpng.png'
+import bigBook2 from './marcuspng.png'
+import bigBook3 from './oscarpng.png'
 
 import customer1 from './customer1.jpeg'
 import customer2 from './customer2.svg'
@@ -10,21 +10,21 @@ import headerLogo from './headerlogo.png'
 
 import offer from './bookoffer.png'
 
-import shoe4 from './book4.jpg'
-import shoe5 from './book5.jpg'
-import shoe6 from './book6.jpg'
-import shoe7 from './book8.jpg'
-import shoe8 from './book9.jpg'
+import book4 from './book4.jpg'
+import book5 from './book5.jpg'
+import book6 from './book6.jpg'
+import book7 from './book8.jpg'
+import book8 from './book9.jpg'
 
 import thumbnailBackground from './thumbnail-background.svg'
-import thumbnailShoe1 from './sunart.jpg'
-import thumbnailShoe2 from './marcus.jpg'
-import thumbnailShoe3 from './oscar.jpg'
+import thumbnailBook1 from './sunartpng.png'
+import thumbnailBook2 from './marcuspng.png'
+import thumbnailBook3 from './oscarpng.png'
 
 export {
-    bigShoe1,
-    bigShoe2,
-    bigShoe3,
+    bigBook1,
+    bigBook2,
+    bigBook3,
 
     customer1,
     customer2,
@@ -33,14 +33,14 @@ export {
     headerLogo,
 
     offer,
-    shoe4,
-    shoe5,
-    shoe6,
-    shoe7,
-    shoe8,
+    book4,
+    book5,
+    book6,
+    book7,
+    book8,
 
     thumbnailBackground,
-    thumbnailShoe1,
-    thumbnailShoe2,
-    thumbnailShoe3
+    thumbnailBook1,
+    thumbnailBook2,
+    thumbnailBook3
 }
