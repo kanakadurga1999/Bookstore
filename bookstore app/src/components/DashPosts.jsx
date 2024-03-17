@@ -81,6 +81,7 @@ export default function DashPosts() {
               <Table.HeadCell>Book image</Table.HeadCell>
               <Table.HeadCell>Book title</Table.HeadCell>
               <Table.HeadCell>Category</Table.HeadCell>
+              <Table.HeadCell>Status</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
               <Table.HeadCell>
                 <span>Edit</span>
@@ -110,6 +111,7 @@ export default function DashPosts() {
                     </Link>
                   </Table.Cell>
                   <Table.Cell>{post.category}</Table.Cell>
+                  <Table.Cell className='text-green-500'>{post.status}</Table.Cell>
                   <Table.Cell>
                     <span
                       onClick={() => {
@@ -143,7 +145,7 @@ export default function DashPosts() {
           )}
         </>
       ) : (
-        <p>You have no posts yet!</p>
+        <p>You have no books yet!</p>
       )}
       <Modal
         show={showModal}

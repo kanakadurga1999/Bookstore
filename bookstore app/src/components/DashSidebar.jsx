@@ -6,6 +6,8 @@ import {
   HiOutlineUserGroup,
   HiAnnotation,
   HiChartPie,
+  HiBookOpen,
+  HiOutlineBookmark,
 } from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -66,7 +68,33 @@ export default function DashSidebar() {
               Profile
             </Sidebar.Item>
           </Link>
-          {currentUser.isAdmin && (
+          {currentUser.isAdmin && ( 
+          <Link to='/dashboard?tab=rentbook'>
+            <Sidebar.Item
+              active={tab === 'rentbook'}
+              icon={HiBookOpen}
+              
+              labelColor='dark'
+              as='div'
+            >
+              Rented Books
+            </Sidebar.Item>
+          </Link>
+          )}
+          {!currentUser.isAdmin && ( 
+          <Link to='/dashboard?tab=rentrequest'>
+            <Sidebar.Item
+              active={tab === 'rentrequest'}
+              icon={HiBookOpen}
+              
+              labelColor='dark'
+              as='div'
+            >
+              Rent Requests
+            </Sidebar.Item>
+          </Link>
+          )}
+           {currentUser.isAdmin && ( 
             <Link to='/dashboard?tab=posts'>
               <Sidebar.Item
                 active={tab === 'posts'}
@@ -76,7 +104,7 @@ export default function DashSidebar() {
                 Books
               </Sidebar.Item>
             </Link>
-          )}
+           )} 
           {currentUser.isAdmin && (
             <>
               <Link to='/dashboard?tab=users'>

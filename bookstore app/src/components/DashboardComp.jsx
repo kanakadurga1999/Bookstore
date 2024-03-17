@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import {
   HiAnnotation,
   HiArrowNarrowUp,
+  HiBookOpen,
+  HiBookmark,
   HiDocumentText,
   HiOutlineUserGroup,
 } from 'react-icons/hi';
@@ -13,12 +15,15 @@ export default function DashboardComp() {
   const [users, setUsers] = useState([]);
   const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [listings,setListings]= useState([])
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalPosts, setTotalPosts] = useState(0);
   const [totalComments, setTotalComments] = useState(0);
+  const [totalListings, setTotalListings]= useState(0);
   const [lastMonthUsers, setLastMonthUsers] = useState(0);
   const [lastMonthPosts, setLastMonthPosts] = useState(0);
   const [lastMonthComments, setLastMonthComments] = useState(0);
+  const [lastMonthListings, setLastMonthListings] = useState(0);
   const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -60,11 +65,28 @@ export default function DashboardComp() {
         console.log(error.message);
       }
     };
+    const fetchListings = async () =>{
+      try {
+        const res = await fetch('/api/listing/getlistings?limit=5');
+        const data = await res.json();
+        if (res.ok) {
+          setListings(data.listings);
+          setTotalListings(data.totalListings);
+          setLastMonthListings(data.lastMonthListings);
+        }
+      } catch (error) {
+        console.log(error.message);
+
+    }
+    
+    }
     if (currentUser.isAdmin) {
       fetchUsers();
       fetchPosts();
       fetchComments();
-    }
+      fetchListings();
+    };
+    
   }, [currentUser]);
   return (
     <div className='p-3 md:mx-auto'>
@@ -75,7 +97,7 @@ export default function DashboardComp() {
               <h3 className='text-gray-500 text-md uppercase'>Total Users</h3>
               <p className='text-2xl'>{totalUsers}</p>
             </div>
-            <HiOutlineUserGroup className='bg-teal-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+            <HiOutlineUserGroup className='bg-pink-500  text-white rounded-full p-1 text-5xl  shadow-lg' size={30} />
           </div>
           <div className='flex  gap-2 text-sm'>
             <span className='text-green-500 flex items-center'>
@@ -93,7 +115,7 @@ export default function DashboardComp() {
               </h3>
               <p className='text-2xl'>{totalComments}</p>
             </div>
-            <HiAnnotation className='bg-indigo-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+            <HiAnnotation className='bg-orange-500  text-white rounded-full p-1 text-5xl  shadow-lg' size={30} />
           </div>
           <div className='flex  gap-2 text-sm'>
             <span className='text-green-500 flex items-center'>
@@ -106,10 +128,10 @@ export default function DashboardComp() {
         <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
           <div className='flex justify-between'>
             <div className=''>
-              <h3 className='text-gray-500 text-md uppercase'>Total Posts</h3>
+              <h3 className='text-gray-500 text-md uppercase'>Total Books</h3>
               <p className='text-2xl'>{totalPosts}</p>
             </div>
-            <HiDocumentText className='bg-lime-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+            <HiBookOpen className='bg-red-500  text-white rounded-full p-1 text-5xl  shadow-lg' size={30}/>
           </div>
           <div className='flex  gap-2 text-sm'>
             <span className='text-green-500 flex items-center'>
@@ -119,6 +141,25 @@ export default function DashboardComp() {
             <div className='text-gray-500'>Last month</div>
           </div>
         </div>
+        <div className='flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md'>
+        <div className='flex justify-between'>
+          <div className=''>
+            <h3  className='text-gray-500 text-md uppercase'>Total Rented Books</h3>
+            <p className='text-2xl'>{totalListings}</p>
+            
+          </div>
+          <HiBookmark className='bg-green-500 text-white rounded-full p-1 text-5xl  shadow-lg' size={30}/>
+          </div >
+          <div className='flex gap-2 text-sm'>
+            <span className='text-green-500 flex items-center'>
+            <HiArrowNarrowUp/>
+            {lastMonthListings}
+            </span>
+            <div className=''>Last Month</div>
+          </div>
+        </div>
+      
+      
       </div>
       <div className='flex flex-wrap gap-4 py-3 mx-auto justify-center'>
         <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
@@ -177,15 +218,15 @@ export default function DashboardComp() {
         </div>
         <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
-            <h1 className='text-center p-2'>Recent posts</h1>
+            <h1 className='text-center p-2'>Recent Books</h1>
             <Button outline gradientDuoTone='pinkToOrange'>
               <Link to={'/dashboard?tab=posts'}>See all</Link>
             </Button>
           </div>
           <Table hoverable>
             <Table.Head>
-              <Table.HeadCell>Post image</Table.HeadCell>
-              <Table.HeadCell>Post Title</Table.HeadCell>
+              <Table.HeadCell>Book image</Table.HeadCell>
+              <Table.HeadCell>Book Title</Table.HeadCell>
               <Table.HeadCell>Category</Table.HeadCell>
             </Table.Head>
             {posts &&
@@ -206,7 +247,36 @@ export default function DashboardComp() {
               ))}
           </Table>
         </div>
+        <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
+          <div className='flex justify-between  p-3 text-sm font-semibold'>
+            <h1 className='text-center p-2'>Recent Rented Books</h1>
+            <Button outline gradientDuoTone='pinkToOrange'>
+              <Link to={'/dashboard?tab=rentbook'}>See all</Link>
+            </Button>
+          </div>
+          <Table hoverable>
+            <Table.Head>
+              <Table.HeadCell>Book</Table.HeadCell>
+              <Table.HeadCell>Username</Table.HeadCell>
+              <Table.HeadCell>Library Id</Table.HeadCell>
+            </Table.Head>
+            {listings &&
+              listings.map((listing) => (
+                <Table.Body key={listing._id} className='divide-y'>
+                  <Table.Row className='bg-white dark:border-gray-700 dark:bg-gray-800'>
+                    <Table.Cell className='font-medium text-gray-900 dark:text-white'>
+                      {listing.name}
+                    </Table.Cell>
+                    <Table.Cell className='w-96'>{listing.nameOfUser}</Table.Cell>
+                    <Table.Cell className='w-5'>{listing.idNumber}</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              ))}
+          </Table>
+        </div>
       </div>
-    </div>
+      </div>
+      
+    
   );
 }

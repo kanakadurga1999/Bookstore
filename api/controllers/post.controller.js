@@ -96,6 +96,7 @@ export const updatepost = async (req, res, next) => {
           content: req.body.content,
           category: req.body.category,
           image: req.body.image,
+          status:req.body.status
         },
       },
       { new: true }
@@ -105,3 +106,4 @@ export const updatepost = async (req, res, next) => {
     next(error);
   }
 };
+

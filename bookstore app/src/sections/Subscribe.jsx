@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../components";
 
 const Subscribe = () => {
@@ -13,7 +14,9 @@ const Subscribe = () => {
       <div className='lg:max-w-[40%] w-full flex items-center max-sm:flex-col gap-5 p-2.5 sm:border sm:border-slate-gray rounded-full'>
         <input type='text' placeholder='subscribe@bookart.com' className='input' />
         <div className='flex max-sm:justify-end items-center max-sm:w-full'>
+          <Link to={'/sign-up'}>
           <Button label='Sign Up' fullWidth />
+          </Link>
         </div>
       </div>
     </section>

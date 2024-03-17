@@ -4,6 +4,7 @@ import { books, statistics } from "../constants";
 import { Button, BookCard } from "../components";
 import { bigBook1 } from "../assets/images";
 import { arrowRight } from "../assets/icons";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [bigBookImg, setBigBookImg] = useState(bigBook1);
@@ -30,7 +31,11 @@ const Hero = () => {
           All your favourite books under one roof !! New & preloved titles in Store.
         </p>
 
+        <Link
+        to={'/search'}>
+
         <Button label='Rent now' iconURL={arrowRight} />
+        </Link>
 
         <div className='flex justify-start items-start flex-wrap w-full mt-20 gap-16'>
           {statistics.map((stat, index) => (

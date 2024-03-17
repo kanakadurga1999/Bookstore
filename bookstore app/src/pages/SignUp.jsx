@@ -55,8 +55,7 @@ export default function SignUp() {
           />
           </Link>
           <p className='text-sm mt-5'>
-            This is a demo project. You can sign up with your email and password
-            or with Google.
+          Welcome to our Bookart, where a world of literary adventures awaits you! Immerse yourself in a seamless reading experience with our user-friendly platform designed for book enthusiasts and administrators alike.
           </p>
         </div>
         {/* right */}

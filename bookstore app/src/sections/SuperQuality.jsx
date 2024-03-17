@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { book8 } from "../assets/images";
 import { Button } from "../components";
 
@@ -20,7 +21,10 @@ const SuperQuality = () => {
           Our dedication to detail and excellence ensures your satisfaction
         </p>
         <div className='mt-11'>
+          <Link
+          to={'/about'}>
           <Button label='View details' />
+          </Link>
         </div>
       </div>
 

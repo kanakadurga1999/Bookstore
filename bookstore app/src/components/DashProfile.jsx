@@ -29,6 +29,8 @@ export default function DashProfile() {
   const [updateUserError, setUpdateUserError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({});
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userListings, setUserListings] = useState([]);
   const filePickerRef = useRef();
   const dispatch = useDispatch();
   const handleImageChange = (e) => {
@@ -150,6 +152,39 @@ export default function DashProfile() {
       console.log(error.message);
     }
   };
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
+
+      setUserListings(data);
+    } catch (error) {
+      setShowListingsError(true);
+    }
+  };
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className='max-w-lg mx-auto p-3 w-full'>
       <h1 className='my-7 text-center font-semibold text-3xl'>Profile</h1>
@@ -227,6 +262,17 @@ export default function DashProfile() {
         >
           {loading ? 'Loading...' : 'Update'}
         </Button>
+        {!currentUser.isAdmin &&  (
+        <Link to={'/create-listing'}>
+            <Button
+              type='button'
+              gradientDuoTone='pinkToOrange'
+              className='w-full'
+            >
+              Rent a Book
+            </Button>
+          </Link>
+        )}
         {currentUser.isAdmin && (
           <Link to={'/create-post'}>
             <Button
@@ -247,6 +293,49 @@ export default function DashProfile() {
           Sign Out
         </span>
       </div>
+      {!currentUser.isAdmin &&  (
+      <button onClick={handleShowListings}  className='text-green-700 w-full'>
+        Show rent requests
+      </button>
+      )}
+      <p className='text-red-700 mt-5'>
+        {showListingsError ? 'Error showing requests' : ''}
+      </p>
+      {userListings && userListings.length > 0 && (
+        <div className='flex flex-col gap-4'>
+          <h1 className='text-center mt-7 text-2xl font-semibold'>
+            Your Listings
+          </h1>
+          {userListings.map((listing) => (
+            <div
+              key={listing._id}
+              className='border rounded-lg p-3 flex justify-between items-center gap-4'
+            >
+             
+              <Link
+                className='text-slate-700 font-semibold  hover:underline truncate flex-1'
+                to={`/listing/${listing._id}`}
+              >
+                <p>{listing.name}</p>
+              </Link>
+              <div className='flex flex-col item-center'>
+                <button
+                  onClick={() => handleListingDelete(listing._id)}
+                  className='text-red-700 uppercase'
+                >
+                  Delete
+                </button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className='text-green-700 uppercase'>Edit</button>
+                </Link>
+                
+              </div>
+              
+               </div>
+          ))}
+        </div>
+      )}
+      
       {updateUserSuccess && (
         <Alert color='success' className='mt-5'>
           {updateUserSuccess}

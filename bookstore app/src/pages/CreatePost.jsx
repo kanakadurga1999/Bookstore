@@ -153,6 +153,17 @@ export default function CreatePost() {
             <option value='three'>3 week</option>
             
           </Select>
+          <Select
+            onChange={(e) =>
+              setFormData({ ...formData, status: e.target.value })
+            }
+          >
+            <option value='uncategorized'>Status</option>
+            <option value='available'>Available</option>
+            <option value='rented'>Rented</option>
+            
+            
+          </Select>
           
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-red-400 border-dotted p-3'>

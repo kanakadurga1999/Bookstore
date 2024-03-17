@@ -1,4 +1,5 @@
 import { star } from "../assets/icons";
+import { Link } from 'react-router-dom';
 
 const PopularProductCard = ({ imgURL, name, price }) => {
   return (
@@ -16,7 +17,18 @@ const PopularProductCard = ({ imgURL, name, price }) => {
       <p className='mt-2 font-semibold font-montserrat text-coral-red text-2xl leading-normal'>
         {price}
       </p>
+      <div>
+    <Link
+    to='/search'
+    className='text-xs sm:text-sm text-teal-500 font-bold hover:underline'
+  >
+    View all books
+  </Link>
+  </div>
+      
     </div>
+    
+    
   );
 };
 
