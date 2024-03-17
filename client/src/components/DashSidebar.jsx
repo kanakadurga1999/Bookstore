@@ -8,6 +8,7 @@ import {
   HiChartPie,
   HiBookOpen,
   HiOutlineBookmark,
+  HiBookmark,
 } from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -72,7 +73,7 @@ export default function DashSidebar() {
           <Link to='/dashboard?tab=rentbook'>
             <Sidebar.Item
               active={tab === 'rentbook'}
-              icon={HiBookOpen}
+              icon={HiBookmark}
               
               labelColor='dark'
               as='div'
@@ -98,7 +99,7 @@ export default function DashSidebar() {
             <Link to='/dashboard?tab=posts'>
               <Sidebar.Item
                 active={tab === 'posts'}
-                icon={HiDocumentText}
+                icon={HiBookOpen}
                 as='div'
               >
                 Books
